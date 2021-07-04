@@ -13,6 +13,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+//Redirect default route to blog
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('blogs.index');;
 });
+
+Route::resource('blogs', 'BlogsController');
+Route::delete('blogs/{id}', 'BlogsController@destroy') ->name('blogs.destroy');
+Route::put('blogs/{id}/edit', 'BlogsController@edit')->name('blogs.edit');
+Route::post('blogs/{id}/update', 'BlogsController@update')->name('blogs.update');
